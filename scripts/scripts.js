@@ -55,13 +55,25 @@ function buildAutoBlocks(main) {
   }
 }
 
+async function decorateHeading() {
+  const h1 = document.querySelector('h1');
+  if (!h1.textContent.startsWith('rofe.com')) return;
+  const resp = await fetch('/icons/logo.svg');
+  if (resp.ok) {
+    const div = document.createElement('div');
+    div.innerHTML = await resp.text();
+    h1.textContent = h1.textContent.trim().substring(1);
+    h1.prepend(div.querySelector('svg'));
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  // hopefully forward compatible button decoration
+  decorateHeading();
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
@@ -105,7 +117,9 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
+  if (window.location.pathname !== '/') {
+    loadHeader(doc.querySelector('header'));
+  }
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);

@@ -12,17 +12,16 @@
 
 :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: white;
-  --light-color: #eee;
-  --dark-color: #ccc;
-  --text-color: black;
+  --link-color: #037;
+  --link-hover-color: #a36;
+  --background-color: #d0e0ff;
+  --light-color: #c8d8ff;
+  --dark-color: #c0d0ff;
+  --text-color: #037;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
+  --body-font-family: 'Courier New', courier, monospace;
   --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -30,7 +29,7 @@
   --body-font-size-xs: 16px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
+  --heading-font-size-xxl: 64px;
   --heading-font-size-xl: 40px;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
@@ -38,7 +37,7 @@
   --heading-font-size-xs: 18px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 0;
 }
 
 @font-face {
@@ -50,7 +49,7 @@
 
 @media (width >= 900px) {
   :root {
-    --heading-font-size-xxl: 60px;
+    --heading-font-size-xxl: 72px;
     --heading-font-size-xl: 48px;
     --heading-font-size-l: 36px;
     --heading-font-size-m: 30px;
@@ -70,11 +69,14 @@ body {
 }
 
 body.appear {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
   height: var(--nav-height);
+  background-color: var(--light-color);
 }
 
 h1,
@@ -98,6 +100,13 @@ h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
 
+h1 svg {
+  float: left;
+  margin-top: 10px;
+  height: var(--heading-font-size-xxl);
+  width: auto;
+}
+
 p,
 dl,
 ol,
@@ -120,6 +129,10 @@ code {
 
 pre {
   overflow: scroll;
+}
+
+main {
+  flex-grow: 1;
 }
 
 main pre {
@@ -160,7 +173,6 @@ button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 30px;
 }
 
 a.button:hover,
@@ -168,6 +180,7 @@ a.button:focus,
 button:hover,
 button:focus {
   background-color: var(--link-hover-color);
+  color: #fff;
   cursor: pointer;
 }
 
@@ -213,6 +226,7 @@ main .section {
 }
 
 @media (width >= 900px) {
+  header .logo,
   .section > div {
     max-width: 1200px;
     margin: auto;
