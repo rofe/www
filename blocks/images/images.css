@@ -1,0 +1,247 @@
+main .images {
+  margin: 32px auto;
+}
+
+@media (width >= 900px) {
+  .images {
+    max-width: 1200px;
+  }
+}
+
+/* carousel */
+
+.carousel {
+  width: 100%;
+  margin: 0;
+  position: relative;
+  padding-top: 75%;
+}
+
+.carousel button {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  border: solid 2px rgba(255 255 255 / 30%);
+  background-color: rgba(0 0 0 / 35%);
+}
+
+.carousel button:hover {
+  background-color: rgba(0 0 0 / 75%);
+}
+
+.carousel button:active {
+  background-color: black;
+}
+
+.carousel button i {
+  width: 20px;
+  height: 20px;
+}
+
+.carousel .carousel-slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  font-size: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+
+.carousel .carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel .carousel-slide picture {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+}
+
+.carousel .carousel-slide picture,
+.carousel .carousel-slide picture img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel .carousel-nav {
+  position: relative;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.carousel .carousel-nav > .carousel-navlink {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+  border-radius: 50%;
+  border: solid 10px var(--background-color);
+  background-color: rgba(0 0 0 / 30%);
+  cursor: pointer;
+}
+
+.carousel .carousel-nav > .carousel-navlink.active {
+  background-color: var(--blue);
+}
+
+.carousel .carousel-fullscreen-toggle {
+  top: 0;
+  right: 0;
+}
+
+.carousel .carousel-fullscreen-toggle i::before,
+.carousel .carousel-fullscreen-toggle i::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 10px;
+  height: 10px;
+  left: 10px;
+  bottom: 10px;
+  border: solid 3px white;
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+
+.carousel .carousel-fullscreen-toggle i::after {
+  transform: rotate(180deg);
+  left: unset;
+  bottom: unset;
+  right: 10px;
+  top: 10px;
+}
+
+.carousel .carousel-previous,
+.carousel .carousel-next {
+  display: none;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+@media (width >= 600px) {
+  .carousel .carousel-nav > .carousel-navlink {
+    height: 16px;
+    width: 16px;
+    margin: 10px 0 0;
+  }
+}
+
+@media (width >= 900px) {
+  .carousel button {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+  }
+
+  .carousel.carousel-hide-controls button {
+    opacity: 0;
+  }
+
+  .carousel .carousel-previous {
+    display: block;
+    left: 10px;
+  }
+
+  .carousel .carousel-next {
+    display: block;
+    right: 10px;
+  }
+}
+
+.carousel .carousel-previous i,
+.carousel .carousel-next i {
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  left: 17px;
+  border: solid 3px white;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  transform: rotate(45deg);
+}
+
+.carousel .carousel-next i {
+  left: 10px;
+  transform: rotate(225deg);
+}
+
+/* fullscreeen mode */
+
+.carousel.fullscreen {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  z-index: 100;
+  background-color: black;
+}
+
+.carousel.fullscreen button {
+  margin: 20px;
+}
+
+.carousel.fullscreen .carousel-slide picture img {
+  max-width: 100vw;
+  height: auto;
+  margin: 0 auto;
+}
+
+.carousel.fullscreen .carousel-slide {
+  width: 100vw;
+  height: 100vh;
+}
+
+.carousel.fullscreen .carousel-nav {
+  display: none;
+}
+
+.carousel.fullscreen .carousel-fullscreen-toggle i::before,
+.carousel.fullscreen .carousel-fullscreen-toggle i::after {
+  left: unset;
+  bottom: unset;
+  top: 5px;
+  right: 5px;
+}
+
+.carousel.fullscreen .carousel-fullscreen-toggle i::after {
+  top: unset;
+  right: unset;
+  bottom: 5px;
+  left: 5px;
+}
+
+@media (width >= 600px) {
+  .carousel.fullscreen .carousel-slide picture img {
+    max-height: 100vh;
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+@media (width >= 900px) {
+  .carousel.fullscreen {
+    max-width: unset;
+    max-height: 100vh;
+  }
+
+  .carousel.fullscreen .carousel-slide picture img {
+    height: auto;
+    width: 100vw;
+    max-width: unset;
+    max-height: unset;
+  }
+}
