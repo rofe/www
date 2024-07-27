@@ -40,6 +40,14 @@
   --nav-height: 0;
 }
 
+body.dark {
+  --background-color: #012;
+  --light-color: #111;
+  --dark-color: #037;
+  --text-color: #c8d8ff;
+  --link-color: #c0d0ff;
+}
+
 @font-face {
   font-family: roboto-fallback;
   size-adjust: 100.06%;
